@@ -25,11 +25,11 @@ public class Matriz extends JPanel implements MouseListener {
     public Matriz(int row, int colum, BufferedImage[][] imagePieces, BufferedImage image) {
         addMouseListener(this);
         this.setSize(image.getHeight(), image.getHeight());
+        this.imgtotal = image;
+        
         this.setVisible(true);
-        this.repaint();
         this.imagePieces2 = imagePieces;
-        BufferedImage imagePieceSize = imagePieces[0][0];
-        this.img = imagePieceSize;
+        this.img = imagePieces[0][0];
         this.imgtotal = image;
         this.rows = row;
         this.colums = colum;

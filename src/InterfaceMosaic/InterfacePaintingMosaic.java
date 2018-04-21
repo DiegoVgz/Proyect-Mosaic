@@ -5,16 +5,13 @@
  */
 package InterfaceMosaic;
 import projectmosaic_diegovega_melissaramirez_melvinastorga_2018.SaveAndLoadImage;
-import java.awt.Color;
+
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
-import javax.swing.JFrame;
-import javax.swing.JScrollPane;
-import static jdk.nashorn.tools.ShellFunctions.input;
 import projectmosaic_diegovega_melissaramirez_melvinastorga_2018.CanvasMosaic;
 import projectmosaic_diegovega_melissaramirez_melvinastorga_2018.Matriz;
 
@@ -24,12 +21,12 @@ import projectmosaic_diegovega_melissaramirez_melvinastorga_2018.Matriz;
  * @author 1
  */
 public class InterfacePaintingMosaic extends javax.swing.JFrame {
-
-    CanvasMosaic c;
+    
+    int counter=0;
     /**
      * Creates new form InterfacePaintingMosaic
      */
-    public InterfacePaintingMosaic() {
+    public InterfacePaintingMosaic() throws IOException {
         initComponents();
         
     }
@@ -76,22 +73,22 @@ public class InterfacePaintingMosaic extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 562, Short.MAX_VALUE)
+            .addGap(0, 580, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 562, Short.MAX_VALUE)
+            .addGap(0, 580, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 550, Short.MAX_VALUE)
+            .addGap(0, 580, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 550, Short.MAX_VALUE)
+            .addGap(0, 580, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -110,12 +107,13 @@ public class InterfacePaintingMosaic extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addGap(32, 32, 32)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(990, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 136, Short.MAX_VALUE)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(10, 10, 10))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(17, 17, 17))))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2)
@@ -129,16 +127,15 @@ public class InterfacePaintingMosaic extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(8, 8, 8)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel1))
+                        .addGap(14, 14, 14)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
@@ -155,10 +152,11 @@ public class InterfacePaintingMosaic extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        
        SaveAndLoadImage sv = new SaveAndLoadImage();
         try {
-            BufferedImage newimage=  sv.ImageChooser();
-            newimage=sv.resize(newimage, 500, 500);
+            BufferedImage newimage=  sv.resize(580, 580);
+            
             int size=Integer.parseInt(jTextField1.getText());
             BufferedImage[][] insertMatriz=  sv.mosaicFrame(newimage, size, size);
             
@@ -169,11 +167,17 @@ public class InterfacePaintingMosaic extends javax.swing.JFrame {
             BufferedImage temp= ImageIO.read(new File("blanco.jpg"));
             screenToPlay[0][0]=temp;
             
-            c = new CanvasMosaic(size,size,insertMatriz,newimage,screenToPlay);
-            jPanel1.add(m);
+            if(counter==0){
+            CanvasMosaic c = new CanvasMosaic(size,size,insertMatriz,newimage,screenToPlay);
             jPanel2.add(c);
+             c.repaint();
+             counter=1;
+            }
+            jPanel1.removeAll();
+            jPanel1.add(m);
+            
+           
             m.repaint();
-            c.repaint();
         } catch (IOException ex) {
             Logger.getLogger(InterfacePaintingMosaic.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -211,7 +215,11 @@ public class InterfacePaintingMosaic extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new InterfacePaintingMosaic().setVisible(true);
+                try {
+                    new InterfacePaintingMosaic().setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(InterfacePaintingMosaic.class.getName()).log(Level.SEVERE, null, ex);
+                }
                
             }
         });

@@ -20,8 +20,9 @@ public class SaveAndLoadImage {
     BufferedImage[][] lostOfpieces;
     
     public BufferedImage[][] mosaicFrame(BufferedImage imgFile, int rows, int columns) throws IOException {
-        int smallWidth = imgFile.getWidth()/rows ;
-        int smallHeight = imgFile.getHeight()/columns;
+       
+        int smallWidth = (int)imgFile.getWidth()/rows ;
+        int smallHeight = (int)imgFile.getHeight()/columns;
 
        BufferedImage[][]  smallImages = new BufferedImage[rows][columns];
 
@@ -45,31 +46,25 @@ public class SaveAndLoadImage {
 
     public BufferedImage ImageChooser() throws IOException {
 
-        File selected = null;
+         BufferedImage bfimg =null;
         JFileChooser file = new JFileChooser();
         file.setCurrentDirectory(new File(System.getProperty("user.home")));
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("*.Images", "jpg", "gif", "pgn");
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("*.Images", "jpg", "gif","PNG", "png","jpeg","JPEG","pgn");
         file.addChoosableFileFilter(filter);
         int result = file.showSaveDialog(null);
         if (result == JFileChooser.APPROVE_OPTION) {
-
-            selected = file.getSelectedFile();
+            
+            File selected = file.getSelectedFile();
             String path = selected.getAbsolutePath();
 
-            BufferedImage bfimg = ImageIO.read(selected);
-
-            if (bfimg.getHeight() > 800 && bfimg.getWidth() > 800) {
-
-                bfimg = null;
-            } else {
+            bfimg = ImageIO.read(selected);
                 return bfimg;
-            }
         } else if (result == JFileChooser.CANCEL_OPTION) {
 
             System.out.println("No file selected");
         }
 
-        return bf_img;
+        return bfimg;
     }
 
     public void saveImage(JLabel im) throws IOException, AWTException {
@@ -95,23 +90,21 @@ public class SaveAndLoadImage {
     }
     
     
-    public static BufferedImage resize(BufferedImage bufferedImage, int newW, int newH) {
-        int w = bufferedImage.getWidth();
-        int h = bufferedImage.getHeight();
-        BufferedImage bufim = new BufferedImage(newW, newH, bufferedImage.getType());
+    public  BufferedImage resize(int newW, int newH) throws IOException {
+        BufferedImage imageSlected= ImageChooser();
+        
+        int w = imageSlected.getWidth();
+        int h = imageSlected.getHeight();
+        BufferedImage bufim = new BufferedImage(newW, newH, imageSlected.getType());
         Graphics2D g = bufim.createGraphics();
         g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-        g.drawImage(bufferedImage, 0, 0, newW, newH, 0, 0, w, h, null);
+        g.drawImage(imageSlected, 0, 0, newW, newH, 0, 0, w, h, null);
         g.dispose();
         return bufim;
     }
 
-    public static void  pieceTOtranfer( BufferedImage piece, BufferedImage[][] tempint, int positionX,int positionY){
-    //  BufferedImage[][] lostOfpieces= tempint;
-            
+    public static void  pieceTOtranfer( BufferedImage piece, BufferedImage[][] tempint, int positionX,int positionY){    
       tempint[positionX][positionY] = piece;
-        System.out.println(positionX+"position x of the matrix"); 
-        System.out.println(positionY+"position y of the matrix");
     }
     
 }
