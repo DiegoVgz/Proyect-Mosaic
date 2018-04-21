@@ -25,7 +25,7 @@ import projectmosaic_diegovega_melissaramirez_melvinastorga_2018.Matriz;
  */
 public class InterfacePaintingMosaic extends javax.swing.JFrame {
 
-    
+    CanvasMosaic c;
     /**
      * Creates new form InterfacePaintingMosaic
      */
@@ -158,8 +158,10 @@ public class InterfacePaintingMosaic extends javax.swing.JFrame {
        SaveAndLoadImage sv = new SaveAndLoadImage();
         try {
             BufferedImage newimage=  sv.ImageChooser();
+            newimage=sv.resize(newimage, 500, 500);
             int size=Integer.parseInt(jTextField1.getText());
             BufferedImage[][] insertMatriz=  sv.mosaicFrame(newimage, size, size);
+            
             Matriz m = new Matriz(size,size,insertMatriz,newimage);
             
             BufferedImage[][] screenToPlay= new BufferedImage[size][size];
@@ -167,7 +169,7 @@ public class InterfacePaintingMosaic extends javax.swing.JFrame {
             BufferedImage temp= ImageIO.read(new File("blanco.jpg"));
             screenToPlay[0][0]=temp;
             
-            CanvasMosaic c = new CanvasMosaic(size,size,insertMatriz,newimage,screenToPlay);
+            c = new CanvasMosaic(size,size,insertMatriz,newimage,screenToPlay);
             jPanel1.add(m);
             jPanel2.add(c);
             m.repaint();

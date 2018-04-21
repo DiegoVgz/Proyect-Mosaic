@@ -2,6 +2,8 @@ package projectmosaic_diegovega_melissaramirez_melvinastorga_2018;
 
 
 import java.awt.AWTException;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.Robot;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -15,12 +17,13 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class SaveAndLoadImage {
 
     BufferedImage bf_img;
-
+    BufferedImage[][] lostOfpieces;
+    
     public BufferedImage[][] mosaicFrame(BufferedImage imgFile, int rows, int columns) throws IOException {
         int smallWidth = imgFile.getWidth()/rows ;
         int smallHeight = imgFile.getHeight()/columns;
 
-        BufferedImage[][] smallImages = new BufferedImage[rows][columns];
+       BufferedImage[][]  smallImages = new BufferedImage[rows][columns];
 
         int count = 0;
         for (int x = 0; x < columns; x++) {
@@ -90,12 +93,25 @@ public class SaveAndLoadImage {
         }
 
     }
+    
+    
+    public static BufferedImage resize(BufferedImage bufferedImage, int newW, int newH) {
+        int w = bufferedImage.getWidth();
+        int h = bufferedImage.getHeight();
+        BufferedImage bufim = new BufferedImage(newW, newH, bufferedImage.getType());
+        Graphics2D g = bufim.createGraphics();
+        g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+        g.drawImage(bufferedImage, 0, 0, newW, newH, 0, 0, w, h, null);
+        g.dispose();
+        return bufim;
+    }
 
-    public ArrayList pieceTOtranfer(BufferedImage img){
-        ArrayList pieceTocPaste = new ArrayList();
-        BufferedImage img2 = img;
-        pieceTocPaste.addAll(0, pieceTocPaste);
-        return pieceTocPaste;
+    public static void  pieceTOtranfer( BufferedImage piece, BufferedImage[][] tempint, int positionX,int positionY){
+    //  BufferedImage[][] lostOfpieces= tempint;
+            
+      tempint[positionX][positionY] = piece;
+        System.out.println(positionX+"position x of the matrix"); 
+        System.out.println(positionY+"position y of the matrix");
     }
     
 }
