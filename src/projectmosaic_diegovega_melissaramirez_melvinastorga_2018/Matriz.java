@@ -21,12 +21,11 @@ import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 public class Matriz extends JPanel implements MouseListener {
-//hola mundo
+
     public Matriz(int row, int colum, BufferedImage[][] imagePieces, BufferedImage image) {
         addMouseListener(this);
         this.setSize(image.getHeight(), image.getHeight());
         this.imgtotal = image;
-        
         this.setVisible(true);
         this.imagePieces2 = imagePieces;
         this.img = imagePieces[0][0];

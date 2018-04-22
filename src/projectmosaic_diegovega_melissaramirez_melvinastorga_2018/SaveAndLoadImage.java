@@ -16,10 +16,9 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class SaveAndLoadImage {
 
-    BufferedImage bf_img;
-    BufferedImage[][] lostOfpieces;
-    
-    public BufferedImage[][] mosaicFrame(BufferedImage imgFile, int rows, int columns) throws IOException {
+   
+ // Corta la imagen segun la cantidad de celdas que requiera el usuario
+    public BufferedImage[][] ImagePieces(BufferedImage imgFile, int rows, int columns) throws IOException {
        
         int smallWidth = (int)imgFile.getWidth()/rows ;
         int smallHeight = (int)imgFile.getHeight()/columns;
@@ -31,12 +30,6 @@ public class SaveAndLoadImage {
             for (int y = 0; y < rows; y++) {
                 smallImages[x][y] = imgFile.getSubimage(x *smallWidth, y
                         * smallHeight, smallWidth, smallHeight);
-//                try {
-//                    ImageIO.write(smallImages[x][y], "png", new File("tile-"
-//                            + (count++) + ".png"));
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
 
             }
 
@@ -44,6 +37,8 @@ public class SaveAndLoadImage {
         return smallImages;
     }
 
+    //Seleciona la imagen en la imagen desde el escritorio para convertirla en un bufferedimage
+    //y asi  realizar los cambios nesesarios
     public BufferedImage ImageChooser() throws IOException {
 
          BufferedImage bfimg =null;
@@ -68,7 +63,7 @@ public class SaveAndLoadImage {
     }
 
     public void saveImage(JLabel im) throws IOException, AWTException {
-
+        BufferedImage bf_img;
         JFileChooser fl_chooser = new JFileChooser();
         if (fl_chooser.showSaveDialog(null) == fl_chooser.APPROVE_OPTION) {
 
