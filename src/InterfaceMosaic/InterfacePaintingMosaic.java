@@ -262,7 +262,7 @@ public class InterfacePaintingMosaic extends javax.swing.JFrame {
             jPanel1.removeAll();
             jPanel1.add(m);
             m.repaint();
-
+            jTextField1.setEnabled(false);
         } catch (IOException ex) {
             Logger.getLogger(InterfacePaintingMosaic.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -282,6 +282,7 @@ public class InterfacePaintingMosaic extends javax.swing.JFrame {
         repaint();
         counter=0;
         System.out.println("click");
+        jTextField1.setEnabled(true);
     }//GEN-LAST:event_jMenu2MouseClicked
 
     /**
