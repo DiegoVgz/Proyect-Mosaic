@@ -30,6 +30,7 @@ public class Matriz extends JPanel implements MouseListener {
         this.colums = colum;
         matrix = new Rectangle2D[colum][colum];
         this.setSize(imgtotal.getWidth(), imgtotal.getHeight());
+        
 
     }
     
@@ -43,7 +44,7 @@ public class Matriz extends JPanel implements MouseListener {
 
     public void paint(Graphics g) {
 //        System.out.println(colums + "ll");
-
+ this.setBackground(Color.red);
         g.toString();
         System.out.println(g.toString());
         Graphics2D g2 = (Graphics2D) g;

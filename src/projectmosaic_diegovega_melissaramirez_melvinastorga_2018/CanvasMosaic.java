@@ -61,9 +61,6 @@ public class CanvasMosaic extends JPanel implements MouseListener {
         
         int counter = 0;
         counter++;
-        System.out.println(counter);
-        System.out.println(colums + "ll");
-
         g.toString();
         System.out.println(g.toString());
         Graphics2D g2 = (Graphics2D) g;
