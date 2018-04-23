@@ -76,7 +76,7 @@ public class InterfacePaintingMosaic extends javax.swing.JFrame {
 
         jButton1.setBackground(new java.awt.Color(153, 0, 0));
         jButton1.setFont(new java.awt.Font("Mongolian Baiti", 1, 14)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon("C:\\Users\\1\\Desktop\\repository\\icons8-búsqueda-30.png")); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8-búsqueda-30.png"))); // NOI18N
         jButton1.setText("Load ");
         jButton1.setPreferredSize(new java.awt.Dimension(85, 32));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -87,7 +87,7 @@ public class InterfacePaintingMosaic extends javax.swing.JFrame {
 
         jButton2.setBackground(new java.awt.Color(153, 0, 0));
         jButton2.setFont(new java.awt.Font("Mongolian Baiti", 1, 14)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon("C:\\Users\\1\\Desktop\\repository\\icons8-abrir-carpeta-26.png")); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8-abrir-carpeta-26.png"))); // NOI18N
         jButton2.setText("Save");
         jButton2.setPreferredSize(new java.awt.Dimension(91, 35));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -117,7 +117,7 @@ public class InterfacePaintingMosaic extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 0)));
         jPanel1.setPreferredSize(new java.awt.Dimension(576, 572));
 
-        jLabel6.setIcon(new javax.swing.ImageIcon("C:\\Users\\1\\Desktop\\repository\\giphy.gif")); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/giphy.gif"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -133,7 +133,7 @@ public class InterfacePaintingMosaic extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 0)));
         jPanel2.setPreferredSize(new java.awt.Dimension(576, 572));
 
-        jLabel7.setIcon(new javax.swing.ImageIcon("C:\\Users\\1\\Desktop\\repository\\giphy.gif")); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/giphy.gif"))); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -153,7 +153,7 @@ public class InterfacePaintingMosaic extends javax.swing.JFrame {
         jLabel5.setText("Insert your new image size");
 
         jButton3.setBackground(new java.awt.Color(153, 0, 0));
-        jButton3.setIcon(new javax.swing.ImageIcon("C:\\Users\\1\\Desktop\\repository\\icons8-reiniciar-30.png")); // NOI18N
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8-reiniciar-30.png"))); // NOI18N
         jButton3.setPreferredSize(new java.awt.Dimension(51, 37));
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -162,7 +162,7 @@ public class InterfacePaintingMosaic extends javax.swing.JFrame {
         });
 
         jButton4.setForeground(new java.awt.Color(0, 255, 0));
-        jButton4.setIcon(new javax.swing.ImageIcon("C:\\Users\\1\\Desktop\\repository\\descarga.png")); // NOI18N
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/descarga.png"))); // NOI18N
         jButton4.setPreferredSize(new java.awt.Dimension(40, 50));
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -174,7 +174,7 @@ public class InterfacePaintingMosaic extends javax.swing.JFrame {
 
         jMenu2.setBackground(new java.awt.Color(204, 0, 0));
         jMenu2.setForeground(new java.awt.Color(255, 255, 255));
-        jMenu2.setIcon(new javax.swing.ImageIcon("C:\\Users\\1\\Desktop\\repository\\icons8-automático-48.png")); // NOI18N
+        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8-automático-48.png"))); // NOI18N
         jMenu2.setText("New Proyect");
         jMenu2.setFont(new java.awt.Font("Mongolian Baiti", 1, 16)); // NOI18N
         jMenu2.setPreferredSize(new java.awt.Dimension(159, 42));
@@ -212,14 +212,11 @@ public class InterfacePaintingMosaic extends javax.swing.JFrame {
                                 .addComponent(jLabel2)
                                 .addGap(195, 195, 195))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(290, 290, 290)
-                                .addComponent(jLabel1))
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(290, 290, 290)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
@@ -242,9 +239,7 @@ public class InterfacePaintingMosaic extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(263, 263, 263)
                                 .addComponent(jLabel4))
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap())))
         );
         layout.setVerticalGroup(
@@ -258,8 +253,7 @@ public class InterfacePaintingMosaic extends javax.swing.JFrame {
                             .addComponent(jLabel1)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(layout.createSequentialGroup()
