@@ -33,11 +33,10 @@ public class CanvasMosaic extends JPanel implements MouseListener {
         this.imgtotal = image;
         this.rows = row;
         this.colums = colum;
-        System.out.println(colums);
         matrix = new Rectangle2D[colum][colum];
         this.setSize(imgtotal.getWidth(), imgtotal.getHeight());
         this.temp = screen;
-//        this.temp2 = imagePieces;
+
      
     }
 
@@ -128,7 +127,7 @@ public class CanvasMosaic extends JPanel implements MouseListener {
  
  
  
-//    @Override
+    @Override
     public void mouseClicked(MouseEvent e) {
         int x = e.getX();
         int y = e.getY();
@@ -164,17 +163,7 @@ public class CanvasMosaic extends JPanel implements MouseListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
-//        int m,n;
-//       int x = e.getX();
-//        int y = e.getY();
-//        for(int i = 0; i < matrix.length; i++)
-//        for(int j =0; j < matrix.length; j++)
-//            if(matrix[i][j].contains(x, y)){
-//                boja = Color.blue;
-//                a = i;
-//                b = j;
-//                repaint();
-//            }
+
     }
 
     @Override

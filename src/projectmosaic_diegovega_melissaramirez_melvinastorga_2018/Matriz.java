@@ -1,13 +1,9 @@
 package projectmosaic_diegovega_melissaramirez_melvinastorga_2018;
 
-import com.sun.glass.ui.Screen;
-import com.sun.media.sound.SoftEnvelopeGenerator;
 import domain.MosaicImages;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Point;
-import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -32,7 +28,6 @@ public class Matriz extends JPanel implements MouseListener {
         this.imgtotal = image;
         this.rows = row;
         this.colums = colum;
-        System.out.println(colums);
         matrix = new Rectangle2D[colum][colum];
         this.setSize(imgtotal.getWidth(), imgtotal.getHeight());
 
@@ -129,17 +124,7 @@ public class Matriz extends JPanel implements MouseListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
-//        int m,n;
-//        int x = e.getX();
-//        int y = e.getY();
-//        for(int i = 0; i < matrix.length; i++)
-//        for(int j =0; j < matrix.length; j++)
-//            if(matrix[i][j].contains(x, y)){
-//                boja = Color.blue;
-//                a = i;
-//                b = j;
-//                repaint();
-//            }
+
     }
 
     @Override
