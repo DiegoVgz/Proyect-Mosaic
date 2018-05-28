@@ -1,7 +1,6 @@
-package projectmosaic_diegovega_melissaramirez_melvinastorga_2018;
+package logic;
 
 import java.awt.AWTException;
-import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
@@ -12,20 +11,20 @@ import javax.swing.JFileChooser;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+/**
+ * Clase donde se maneja las funcinoes logicas del programa
+ *
+ *
+ * @author DiegoVega, Melissa Ramirez, Melvin Astorga
+ * @version 1.0
+ */
 
- /**
-     * Clase donde se carga o guarda
-     *
-     *
-     * @author DiegoVega, Melissa Ramirez, Melvin Astorga
-     * @version 1.0
-     */
 
+public class LogicMethods {
 
-public class SaveAndLoadImage {
-
-    /**
-     * Corta una imagen en varias imagenes dependiendo del tamaÃ±o de la matriz o cuadricula
+     /**
+     * Metodo que corta la imagen en cuadritos, dependiendo del tamaÃ±o de la
+     * cuadricula
      *
      *
      * @author DiegoVega, Melissa Ramirez, Melvin Astorga
@@ -54,7 +53,8 @@ public class SaveAndLoadImage {
     }
 
     /**
-     * Metodo que selecciona una imagen mediante un filechooser
+     * Metodo que selecciona una imagen con el filechooser la cual serÃ 
+     * utilizada para tomar partes de la misma y crear el mosaico
      *
      *
      * @author DiegoVega, Melissa Ramirez, Melvin Astorga
@@ -78,7 +78,7 @@ public class SaveAndLoadImage {
             String path = selected.getAbsolutePath();
 
             bfimg = ImageIO.read(selected);
-           
+
             return bfimg;
         } else if (result == JFileChooser.CANCEL_OPTION) {
 
@@ -89,7 +89,7 @@ public class SaveAndLoadImage {
     }
 
     /**
-     * Metodo que guarda el mosaico creado mediante un filechooser
+     * Metodo para guardar el mosaico mediante un filechooser
      *
      *
      * @author DiegoVega, Melissa Ramirez, Melvin Astorga
@@ -119,7 +119,7 @@ public class SaveAndLoadImage {
     }
 
     /**
-     * Metodo que redefine la dimensiÃ³n de una imagen para poder trabajarla
+     * Metodo que redefine el tamaÃ±o de una imagen para poder trabajarlo en la aplicaciÃ³n
      *
      *
      * @author DiegoVega, Melissa Ramirez, Melvin Astorga
@@ -136,28 +136,28 @@ public class SaveAndLoadImage {
         Graphics2D g = bufim.createGraphics();
         g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
         g.drawImage(imageSlected, 0, 0, newW, newH, 0, 0, w, h, null);
-        
+
 //        g.dispose();
         return bufim;
     }
 
     /**
-     * Metodo que indica cual parte de imagen se va a trabajar
+     * Metodo para crear una imagen recortada de una parte de una imagen original
      *
      *
      * @author DiegoVega, Melissa Ramirez, Melvin Astorga
      * @version 1.0
-     */
+     */    
 
     
     public static void pieceTOtranfer(BufferedImage piece, BufferedImage[][] tempint, int positionX, int positionY) {
-        
+
         tempint[positionX][positionY] = piece;
-        
+
     }
 
     /**
-     * Metodo que cmabia el color de una imagen a blanco y negro
+     * Metodo que convierte una imagen a blanco & negro de color
      *
      *
      * @author DiegoVega, Melissa Ramirez, Melvin Astorga
@@ -167,7 +167,7 @@ public class SaveAndLoadImage {
     
     public BufferedImage blackAndWhite(BufferedImage img_invertColor) {
         int color = 0;
-       BufferedImage imgblackandWhite = img_invertColor;
+        BufferedImage imgblackandWhite = img_invertColor;
 
         for (int i = 0; i < imgblackandWhite.getHeight(); i++) {
             for (int j = 0; j < imgblackandWhite.getWidth(); j++) {
@@ -177,12 +177,11 @@ public class SaveAndLoadImage {
                 int r = (color >> 16) & 0xff;
                 int g = (color >> 8) & 0xff;
                 int b = color & 0xff;
-                int avg = (r+g+b)/3;
-                color = (a<<24) | (avg<<16) | (avg<<8) | avg;
+                int avg = (r + g + b) / 3;
+                color = (a << 24) | (avg << 16) | (avg << 8) | avg;
                 img_invertColor.setRGB(i, j, color);
             }
         }
-
 
         return imgblackandWhite;
     }

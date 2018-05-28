@@ -7,6 +7,15 @@ import javax.swing.JFrame;
  * @author Diego, Melvin, Melissa
  * @version 1.0
  */
+
+/**
+     * Metodo main
+     *
+     *
+     * @author DiegoVega, Melissa Ramirez, Melvin Astorga
+     * @version 1.0
+     */
+
 public class ProjectMosaic_DiegoVega_MelissaRamirez_MelvinAstorga_2018 {
 
     /**

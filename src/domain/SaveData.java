@@ -1,6 +1,4 @@
-
-package file;
-
+package domain;
 
 import java.io.Serializable;
 

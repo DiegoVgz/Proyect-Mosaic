@@ -1,4 +1,4 @@
-package projectmosaic_diegovega_melissaramirez_melvinastorga_2018;
+package domain;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -16,8 +16,8 @@ import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 /**
- * Clase donde se crea el panel donde se cargan las imagenes que se partiran
- * para generar piezas para formar un mosaico
+ * Clase donde se crean objetos ImagePanel, los cuales se usan para crear el
+ * panel donde se cargan las imagenes que sirven para crear el mosaico
  *
  *
  * @author DiegoVega, Melissa Ramirez, Melvin Astorga
@@ -25,7 +25,7 @@ import javax.swing.JPanel;
  */
 
 
-public class Matriz extends JPanel implements MouseListener {
+public class ImagePanel extends JPanel implements MouseListener {
 
     /**
      * Constructor de la clase
@@ -36,7 +36,7 @@ public class Matriz extends JPanel implements MouseListener {
      */
 
     
-    public Matriz(int row, int colum, BufferedImage[][] imagePieces, BufferedImage image) {
+    public ImagePanel(int row, int colum, BufferedImage[][] imagePieces, BufferedImage image) {
         addMouseListener(this);
         this.setSize(image.getHeight(), image.getHeight());
         this.imgtotal = image;
@@ -60,7 +60,7 @@ public class Matriz extends JPanel implements MouseListener {
     BufferedImage img = null;
     BufferedImage imgtotal = null;
 
-    /**
+     /**
      * Metodo paint de la clase Graphics
      *
      *
@@ -81,8 +81,8 @@ public class Matriz extends JPanel implements MouseListener {
     }
 
     /**
-     * Metodo que dibuja una matriz o cuadricula de un tamaÃ±o especificado
-     * mediante lineas separadas de un tamaÃ±o indicado.
+     * Metodo que dibuja la matriz en el panel de trabajo, dependiendo el numero
+     * de celdas especificado, crea varias lineas para formar una cuadricula
      *
      *
      * @author DiegoVega, Melissa Ramirez, Melvin Astorga
@@ -134,8 +134,8 @@ public class Matriz extends JPanel implements MouseListener {
 
     
     /**
-     * Metodo que copia un cuadrito o parte de una imagen separado en la
-     * cuadricula tomado de la posicion X y Y del click del mouse
+     * Funcion del Mouse que permite seleccionar un cuadro de la cuadricula,
+     * tomando la posicion X y la Y de donde se da click
      *
      *
      * @author DiegoVega, Melissa Ramirez, Melvin Astorga
@@ -156,7 +156,7 @@ public class Matriz extends JPanel implements MouseListener {
                     try {
                         ImageIO.write(pasteImage, "jpg", new File("piece.jpg"));
                     } catch (IOException ex) {
-                        Logger.getLogger(Matriz.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(ImagePanel.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
             }

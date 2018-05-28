@@ -1,10 +1,9 @@
-package projectmosaic_diegovega_melissaramirez_melvinastorga_2018;
+package domain;
 
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Panel;
 import java.awt.RenderingHints;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -15,19 +14,19 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JScrollBar;
 import javax.swing.SwingUtilities;
+import logic.LogicMethods;
 
 /**
- * Clase donde se crea el mosaico
+ * Clase donde se crea el objeto necesario para el panel donde se crea el
+ * Mosaico
  *
  *
  * @author DiegoVega, Melissa Ramirez, Melvin Astorga
  * @version 1.0
  */
-public class CanvasMosaic extends JPanel implements MouseListener {
+public class MosaicPanel extends JPanel implements MouseListener {
 
     /**
      * Constructor de la clase
@@ -36,7 +35,7 @@ public class CanvasMosaic extends JPanel implements MouseListener {
      * @author DiegoVega, Melissa Ramirez, Melvin Astorga
      * @version 1.0
      */
-    public CanvasMosaic(int row, int colum, BufferedImage[][] imagePieces, BufferedImage image, BufferedImage[][] screen) throws IOException {
+    public MosaicPanel(int row, int colum, BufferedImage[][] imagePieces, BufferedImage image, BufferedImage[][] screen) throws IOException {
         addMouseListener(this);
         this.setSize(image.getHeight(), image.getHeight());
         this.setVisible(true);
@@ -56,6 +55,7 @@ public class CanvasMosaic extends JPanel implements MouseListener {
     BufferedImage img = null;
     BufferedImage imgtemp = null;
     BufferedImage imgtotal = null;
+    boolean paintLines= true;
     static int rows;
     static int colums;
     int cordenatesY = 0;
@@ -63,13 +63,12 @@ public class CanvasMosaic extends JPanel implements MouseListener {
     int x_position = 0;
     int y_position = 0;
     Rectangle2D[][] matrix = new Rectangle2D[colums][colums];
-
     static BufferedImage[][] imagePieces2 = new BufferedImage[colums][colums];
     static BufferedImage[][] temp = new BufferedImage[colums][colums];
     static BufferedImage[][] temp2 = new BufferedImage[colums][colums];
 
     /**
-     * Metodo paintComponent de la clase Graphics
+     * Metodo PaintComponent de la clase Graphics
      *
      *
      * @author DiegoVega, Melissa Ramirez, Melvin Astorga
@@ -89,13 +88,15 @@ public class CanvasMosaic extends JPanel implements MouseListener {
     }
 
     /**
-     * Metodo que genera una matriz o cuadricula de un tamaÃ±o especificado, con
-     * lineas separadas a cierta distancia
+     * Metodo que dibuja la matriz, segun el numero indicado crea una cuadricula
+     * NxN para dividir el area del mosaico
      *
      *
      * @author DiegoVega, Melissa Ramirez, Melvin Astorga
      * @version 1.0
      */
+    
+
     private void drawMatrix(Graphics2D g2) {
 
         g2.setColor(Color.black);
@@ -126,6 +127,7 @@ public class CanvasMosaic extends JPanel implements MouseListener {
 
         }
 
+  if(paintLines==true){   
         for (int i = 0; i < imgtotal.getWidth(); i++) {
             for (int j = 0; j < imgtotal.getHeight(); j++) {
 
@@ -142,18 +144,24 @@ public class CanvasMosaic extends JPanel implements MouseListener {
                 calculateY = calculateY + img.getWidth();
             }
         }
+     }
 
     }
 
-    boolean flip = false, turnRight = false, turnLeft = false, turnDown = false;
 
-    /**
-     * Metodo que indica en que posicion se cambia una imagen seleccionada
-     *
-     *
-     * @author DiegoVega, Melissa Ramirez, Melvin Astorga
-     * @version 1.0
-     */
+    boolean flip = false, turnRight = false, turnLeft = false, turnDown = false, black = false;
+
+    ;
+
+     /**
+ * Metodo que indica en que posicion girar una imagen 
+ * 
+ *
+ * @author DiegoVega, Melissa Ramirez, Melvin Astorga
+ * @version 1.0
+ */
+
+    
     public void flipImage(boolean flip, String position) throws IOException {
         if (flip != false && position.equals("Rotar Derecha")) {
             turnRight = true;
@@ -164,26 +172,19 @@ public class CanvasMosaic extends JPanel implements MouseListener {
             turnDown = true;
         } else if (flip != false && position.equals("Flip")) {
             this.flip = true;
+        } else if (flip != false && position.equals("blackAndWhite")) {
+            black = true;
         } else {
             this.flip = false;
         }
     }
 
-    /**
-     * Metodo que voltea una imagen seleccionada a la derecha
-     *
-     *
-     * @author DiegoVega, Melissa Ramirez, Melvin Astorga
-     * @version 1.0
-     */
     public BufferedImage turnRight(BufferedImage sprite) {
 
         BufferedImage img = new BufferedImage(sprite.getWidth(), sprite.getHeight(), BufferedImage.TYPE_INT_ARGB);
         for (int xx = sprite.getHeight() - 1; xx > 0; xx--) {
             for (int yy = 0; yy < sprite.getWidth(); yy++) {
-                // derecha img.setRGB(sprite.getWidth() - xx, yy, sprite.getRGB(yy, xx));
-                // de cabeza img.setRGB(yy, sprite.getHeight() - xx, sprite.getRGB(yy, xx))
-                // izquierda img.setRGB(yy, sprite.getHeight() - xx, sprite.getRGB(xx, yy));
+
                 img.setRGB(sprite.getWidth() - xx, yy, sprite.getRGB(yy, xx));
             }
         }
@@ -191,13 +192,6 @@ public class CanvasMosaic extends JPanel implements MouseListener {
         return img;
     }
 
-    /**
-     * Metodo que voltea una imagen seleccionada a la izquerda
-     *
-     *
-     * @author DiegoVega, Melissa Ramirez, Melvin Astorga
-     * @version 1.0
-     */
     public BufferedImage turnLeft(BufferedImage sprite) {
 
         BufferedImage img = new BufferedImage(sprite.getWidth(), sprite.getHeight(), BufferedImage.TYPE_INT_ARGB);
@@ -211,13 +205,6 @@ public class CanvasMosaic extends JPanel implements MouseListener {
         return img;
     }
 
-    /**
-     * Metodo que voltea una imagen seleccionada de cabeza
-     *
-     *
-     * @author DiegoVega, Melissa Ramirez, Melvin Astorga
-     * @version 1.0
-     */
     public BufferedImage turnHead(BufferedImage sprite) {
 
         BufferedImage img = new BufferedImage(sprite.getWidth(), sprite.getHeight(), BufferedImage.TYPE_INT_ARGB);
@@ -231,13 +218,6 @@ public class CanvasMosaic extends JPanel implements MouseListener {
         return img;
     }
 
-    /**
-     * Metodo que voltea una imagen seleccionada de forma flip
-     *
-     *
-     * @author DiegoVega, Melissa Ramirez, Melvin Astorga
-     * @version 1.0
-     */
     public BufferedImage flip2(BufferedImage sprite) {
         BufferedImage img = new BufferedImage(sprite.getWidth(), sprite.getHeight(), BufferedImage.TYPE_INT_ARGB);
         for (int xx = sprite.getWidth() - 1; xx > 0; xx--) {
@@ -249,21 +229,18 @@ public class CanvasMosaic extends JPanel implements MouseListener {
         return img;
     }
 
-    SaveAndLoadImage sv = new SaveAndLoadImage();
+    LogicMethods sv = new LogicMethods();
 
-    /**
-     * Metodo que indica la posicion de una imagen
-     *
-     *
-     * @author DiegoVega, Melissa Ramirez, Melvin Astorga
-     * @version 1.0
-     */
     public void ImagePosition() throws IOException {
         BufferedImage img2;
 
         //imagen que se guardó al dar click derecho en el canvas
         img2 = ImageIO.read(new File("imagenRotate.jpg"));
 
+        if (black != false) {
+            img2 = sv.blackAndWhite(img2);
+            ImageIO.write(img2, "jpg", new File("imagenRotate.jpg"));
+        }
         //estas variables cambian al ser llamadas en el botón, por lo que si se solicita cambiar de posicion reescribe la imagen
         //guardada en memoria por el click izquierdo con la transformación realizada.
         if (flip != false) {
@@ -287,6 +264,12 @@ public class CanvasMosaic extends JPanel implements MouseListener {
             // resscribe la imagen
             ImageIO.write(img2, "jpg", new File("2.jpg"));
         }
+        if (black != false) {
+
+            sv.blackAndWhite(img2);
+
+            ImageIO.write(img2, "jpg", new File("2.jpg"));
+        }
 
         // se vuelven a poner todas las variables en falso, para que la próxima vez, al tocar el boton con alguna 
         //transformación, solo ingrese en el if de la acción indicada
@@ -294,7 +277,7 @@ public class CanvasMosaic extends JPanel implements MouseListener {
         turnLeft = false;
         turnDown = false;
         turnRight = false;
-
+        black = false;
         // recorre la matriz del canvas
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix.length; j++) {
@@ -318,17 +301,14 @@ public class CanvasMosaic extends JPanel implements MouseListener {
         }
 
     }
+     public void quitLines(boolean quit){
+        
+        paintLines=quit;
+        
+    }
     int x = 0;
     int y = 0;
 
-    /**
-     * Metodo que selecciona un cuadro de imagen de una posicion indicada con el
-     * click del mouse
-     *
-     *
-     * @author DiegoVega, Melissa Ramirez, Melvin Astorga
-     * @version 1.0
-     */
     @Override
     public void mouseClicked(MouseEvent e) {
         x = e.getX();
@@ -365,7 +345,7 @@ public class CanvasMosaic extends JPanel implements MouseListener {
                     repaint();
                 }
             } catch (IOException ex) {
-                Logger.getLogger(CanvasMosaic.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Canvas.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         if (SwingUtilities.isRightMouseButton(e)) {
@@ -381,7 +361,7 @@ public class CanvasMosaic extends JPanel implements MouseListener {
 
                             ImageIO.write(rotate, "jpg", new File("imagenRotate.jpg"));
                         } catch (IOException ex) {
-                            Logger.getLogger(CanvasMosaic.class.getName()).log(Level.SEVERE, null, ex);
+                            Logger.getLogger(Canvas.class.getName()).log(Level.SEVERE, null, ex);
                         }
 
 //                        x_position=i;
